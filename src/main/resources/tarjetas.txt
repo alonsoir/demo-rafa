@@ -1,0 +1,2 @@
+# card_name,tae
+COFIDIS,24.51
