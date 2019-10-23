@@ -3,6 +3,8 @@ package hello.api;
 import hello.dto.Greeting;
 import hello.exceptions.NotExistException;
 import hello.services.RateService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +12,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class HelloController {
+
+    Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
@@ -42,7 +46,7 @@ public class HelloController {
             msg = value ? initialMsg  + " es usura. ": initialMsg + " NO es usura";
         }catch (NotExistException e){
             msg = e.getMessage();
-            System.out.println("msg is "+msg + "<--->" + e.getMessage());
+            logger.info("msg is "+msg + "<--->" + e.getMessage());
         }
         return new Greeting(counter.incrementAndGet(),msg);
     }

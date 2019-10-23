@@ -3,6 +3,8 @@ package hello.services;
 import hello.exceptions.NotExistException;
 import hello.pojos.Cards;
 import hello.pojos.Rates;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
 @Service
 public class RateService {
 
+    Logger logger = LoggerFactory.getLogger(RateService.class);
+
     private static final String COMMA = ",";
     private final Map mapInteresActivo = new HashMap<String,Float>();
     private final Map mapTarjetas = new HashMap<String,Float>();
@@ -28,19 +32,19 @@ public class RateService {
         try {
             List<Rates> list = processInputFile(PATH_TIPOS);
             list.stream().forEach(e-> mapInteresActivo.put(e.getYear_month(),e.getRate()));
-            System.out.println("There are " + mapInteresActivo.values().size() + " elements on TAE map. " + list.size() + " elements on list. ");
+            logger.info("There are " + mapInteresActivo.values().size() + " elements on TAE map. " + list.size() + " elements on list. ");
             //System.out.println("Listing TAE file.");
             //mapInteresActivo.forEach((k,v)-> System.out.println(k.toString() + " " + v.toString()));
 
             List<Cards> listCards = processInputCardsFile(PATH_TARJETAS);
             listCards.stream().forEach(e-> mapTarjetas.put(e.getCard_name(),e.getRate()));
-            System.out.println("There are " + mapTarjetas.values().size() + " elements on CARD map. " + listCards.size() + " elements on list. ");
+            logger.info("There are " + mapTarjetas.values().size() + " elements on CARD map. " + listCards.size() + " elements on list. ");
             //System.out.println("Listing cards!");
             //mapTarjetas.forEach((k,v)-> System.out.println(k.toString() + " " + v.toString()));
-            System.out.println("Rate/TAE service Initialized!");
+            logger.info("Rate/TAE service Initialized!");
         }catch (FileNotFoundException e) {
             //Nothing to do...
-            System.out.println(e.getMessage());
+            logger.info(e.getMessage());
         }
     }
 
@@ -70,14 +74,14 @@ public class RateService {
 
         try {
             taeBank = getTAE(year, month);
-            System.out.println("taeBank: " + taeBank);
+            logger.info("taeBank: " + taeBank);
             taeByCard = getTAEByCard(card);
-            System.out.println("taeByCard: " + taeByCard);
+            logger.info("taeByCard: " + taeByCard);
             calculated = taeByCard > taeBank * 2;
             return calculated;
         }catch(Exception e){
             String someMsg = "year: " + year + " month: " + month + " card: " + card + " taeBank: " + taeBank + " taeByCard: " + taeByCard + ". Probablemente el año, el mes o la tarjeta NO están en el sistema." ;
-            System.out.println(someMsg);
+            logger.info(someMsg);
             throw new NotExistException(someMsg);
         }
     }
