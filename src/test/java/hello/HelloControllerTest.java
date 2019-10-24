@@ -21,9 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class HelloControllerTest {
 
-    //why do you need logging for tests? they should be isolated from the human view
-    Logger logger = LoggerFactory.getLogger(HelloControllerTest.class);
-
     //autowired will try to take the bean from the context, if you're writing an unit-test, there is no context available
     @Autowired
     private MockMvc mvc;

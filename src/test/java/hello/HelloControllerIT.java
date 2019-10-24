@@ -24,7 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class HelloControllerIT {
 
-    Logger logger = LoggerFactory.getLogger(HelloControllerIT.class);
+    private static final Logger logger = LoggerFactory.getLogger(HelloControllerIT.class);
 
     @LocalServerPort
     private int port;
@@ -50,7 +50,7 @@ public class HelloControllerIT {
     }
 
     @Test
-    public void shouldBeALoanSharkCard() throws NotExistException {
+    public void should_Be_A_LoanSharkCard() throws NotExistException {
         String year = "2017";
         String month = "Ene";
         String card = "COFIDIS";
@@ -59,7 +59,7 @@ public class HelloControllerIT {
     }
 
     @Test
-    public void shouldFailTryingToSearchWithYearIsNullAndMonthIsNotNullIfLoanIsASharkCard() throws NotExistException{
+    public void should_Fail_Trying_To_Search_With_Year_IsNull_And_Month_Is_Not_Null_If_Loan_Is_ASharkCard() throws NotExistException{
         String year = null;
         String month = "Ene";
         String card = "COFIDIS";
@@ -73,7 +73,7 @@ public class HelloControllerIT {
     }
 
     @Test
-    public void shouldFailTryingToSearchWithYearIsNotNullAndMonthIsNullIfLoanIsASharkCard() throws NotExistException{
+    public void should_Fail_Trying_To_Search_With_Year_Is_Not_Null_And_Month_Is_Null_If_Loan_Is_A_SharkCard() throws NotExistException{
         String year = "2018";
         String month = null;
         String card = "COFIDIS";
@@ -85,7 +85,7 @@ public class HelloControllerIT {
     }
 
     @Test
-    public void shouldFailTryingToSearchWithYearIsNotNullAndMonthIsNotNullAndCardIsNullIfLoanIsASharkCard() throws NotExistException{
+    public void should_Fail_Trying_To_Search_With_Year_Is_Not_Null_And_Month_Is_Not_Null_And_Card_Is_Null_If_Loan_Is_ASharkCard() throws NotExistException{
         String year = "2018";
         String month = "Ene";
         String card = null;

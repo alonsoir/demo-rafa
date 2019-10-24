@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class HelloController {
 
     //must be private
-    Logger logger = LoggerFactory.getLogger(HelloController.class);
+    private final static Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     private static final String template = "Hello, %s!";
     //this is not a good idea since a REST service must be stateless, only should rely on singletons
@@ -92,15 +92,7 @@ public class HelloController {
             logger.info("msg is "+msg + "<--->" + e.getMessage());
         }
         result.setMsg(msg);
-        /*
-        List<User> users = userService.findByUserNameOrEmail(search.getUsername());
-        if (users.isEmpty()) {
-            result.setMsg("no user found!");
-        } else {
-            result.setMsg("success");
-        }
-        result.setResult(users);
-*/
+
         return ResponseEntity.ok(result);
 
     }
