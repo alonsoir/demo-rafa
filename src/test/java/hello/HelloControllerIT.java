@@ -52,7 +52,7 @@ public class HelloControllerIT {
     @Test
     public void should_Be_A_LoanSharkCard() throws NotExistException {
         String year = "2017";
-        String month = "Ene";
+        String month = "Enero";
         String card = "COFIDIS";
         boolean result = service.isALoanSharkCard(year,month,card);
         Assert.assertTrue("Should be true",result);
@@ -61,7 +61,7 @@ public class HelloControllerIT {
     @Test
     public void should_Fail_Trying_To_Search_With_Year_IsNull_And_Month_Is_Not_Null_If_Loan_Is_ASharkCard() throws NotExistException{
         String year = null;
-        String month = "Ene";
+        String month = "Enero";
         String card = "COFIDIS";
         try {
             boolean result = service.isALoanSharkCard(year,month,card);
@@ -87,7 +87,7 @@ public class HelloControllerIT {
     @Test
     public void should_Fail_Trying_To_Search_With_Year_Is_Not_Null_And_Month_Is_Not_Null_And_Card_Is_Null_If_Loan_Is_ASharkCard() throws NotExistException{
         String year = "2018";
-        String month = "Ene";
+        String month = "Enero";
         String card = null;
         try {
             boolean result = service.isALoanSharkCard(year,month,card);
