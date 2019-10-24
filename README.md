@@ -20,3 +20,22 @@ Luego no te olvides de recompilar para empaquetar los cambios en el jar.
 
 
 
+# demo-rafa
+A small web service to calculate if a card is usury or not.
+
+mvn clean package spring-boot:run to launch the project.
+
+Once the project is compiled, you can launch the following command:
+
+aironman@MacBook-Pro-de-Alonso ~/g/d/g/complete> java -jar target/gs-spring-boot-0.1.0.jar 
+
+There will be a Tomcat server embedded in the jar.
+
+Open localhost:8080 in a tab of your browser.
+
+The COFIDIS card is currently registered with its corresponding TAE. 
+See the src/main/resources/tarjetas.txt file if you want to register a new one.
+
+The TAE data according to the BdE are registered in the file src/main/resources/types.txt, if you want to add a new one, respect the format.
+
+Then don't forget to recompile to pack the changes in the jar.
