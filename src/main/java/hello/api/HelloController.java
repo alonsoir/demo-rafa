@@ -13,13 +13,19 @@ import java.util.concurrent.atomic.AtomicLong;
 @RestController
 public class HelloController {
 
+    //must be private
     Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     private static final String template = "Hello, %s!";
+    //this is not a good idea since a REST service must be stateless, only should rely on singletons
     private final AtomicLong counter = new AtomicLong();
 
+    HelloController(final RateService service) {
+        this.service = service;
+    }
+
     @Autowired
-    private RateService service;
+    private final RateService service;
 
     @RequestMapping("/")
     public String index() {
@@ -28,27 +34,30 @@ public class HelloController {
 
     @GetMapping("/hello-world")
     @ResponseBody
-    public Greeting sayHello(@RequestParam(name="name", required=false, defaultValue="Stranger") String name) {
+    public Greeting sayHello(@RequestParam(name = "name", required = false, defaultValue = "Stranger") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
+
     //http://localhost:8080/usura?year=2018&month=Ene&card=COFIDIS
     @GetMapping("/usura")
     @ResponseBody
-    public Greeting isLoan(@RequestParam(name="year", required=false, defaultValue="Stranger") String year,
-                           @RequestParam(name="month", required=false, defaultValue="Stranger") String month,
-                           @RequestParam(name="card", required=false, defaultValue="Stranger") String card) {
+    //can be package private
+    public Greeting isLoan(@RequestParam(name = "year", required = false, defaultValue = "Stranger") String year,
+                           @RequestParam(name = "month", required = false, defaultValue = "Stranger") String month,
+                           @RequestParam(name = "card", required = false, defaultValue = "Stranger") String card) {
 
         String initialMsg = "La tarjeta " + card + " con fecha " + year + " " + month;
+        //this is redundant
         boolean value = false;
         String msg;
         try {
             value = service.isALoanSharkCard(year, month, card);
-            msg = value ? initialMsg  + " es usura. ": initialMsg + " NO es usura";
-        }catch (NotExistException e){
+            msg = value ? initialMsg + " es usura. " : initialMsg + " NO es usura";
+        } catch (NotExistException e) {
             msg = e.getMessage();
-            logger.info("msg is "+msg + "<--->" + e.getMessage());
+            logger.info("msg is " + msg + "<--->" + e.getMessage());
         }
-        return new Greeting(counter.incrementAndGet(),msg);
+        return new Greeting(counter.incrementAndGet(), msg);
     }
 
 }
