@@ -18,7 +18,11 @@ Los datos TAE según el BdE están dado de alta en el fichero src/main/resources
 
 Luego no te olvides de recompilar para empaquetar los cambios en el jar.
 
+Introduce en tarjeta: cofidis
+Introduce en año: 2019
+Introduce en mes: Enero
 
+Verás un mensaje json que te dirá si la tarjeta es usura o no.
 
 # demo-rafa
 A small web service to calculate if a card is usury or not.
@@ -39,3 +43,9 @@ See the src/main/resources/tarjetas.txt file if you want to register a new one.
 The TAE data according to the BdE are registered in the file src/main/resources/types.txt, if you want to add a new one, respect the format.
 
 Then don't forget to recompile to pack the changes in the jar.
+
+Introduce in card: cofidis
+Introduce in year: 2019
+Enter month: January
+
+You will see a json message that will tell you if the card is usury or not.
