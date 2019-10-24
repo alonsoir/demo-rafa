@@ -85,7 +85,7 @@ public class HelloController {
         boolean value = false;
         String msg = null;
         try {
-            value = service.isALoanSharkCard(search.getAño(), search.getMes(), search.getTarjeta().toUpperCase());
+            value = service.isALoanSharkCard(search.getAño(), search.getMes().toUpperCase(), search.getTarjeta().toUpperCase());
             msg = value ? initialMsg  + " es usura. ": initialMsg + " NO es usura";
         }catch (NotExistException e){
             msg = e.getMessage();
