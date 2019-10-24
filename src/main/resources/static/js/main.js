@@ -31,8 +31,7 @@ function fire_ajax_submit() {
         timeout: 600000,
         success: function (data) {
 
-            var json = "<h4>Ajax Response</h4><pre>"
-                + JSON.stringify(data, null, 4) + "</pre>";
+            var json = "<pre>" + JSON.stringify(data, null, 4) + "</pre>";
             $('#feedback').html(json);
 
             console.log("SUCCESS : ", data);
@@ -41,8 +40,7 @@ function fire_ajax_submit() {
         },
         error: function (e) {
 
-            var json = "<h4>Ajax Response</h4><pre>"
-                + e.responseText + "</pre>";
+            var json = "<pre>" + e.responseText + "</pre>";
             $('#feedback').html(json);
 
             console.log("ERROR : ", e);
