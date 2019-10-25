@@ -23,6 +23,14 @@
   Introduce en mes: Enero
 
   Verás un mensaje json que te dirá si la tarjeta es usura o no.
+  
+  Se ha añadido un fichero Dockerfile para hacer correr el servicio como contenedor.
+  
+    mvn package dockerfile:build
+    
+    docker images
+    
+    docker run IMAGE-ID
 
 # demo-rafa
   A small web service to calculate if a card is usury or not.
