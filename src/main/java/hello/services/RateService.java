@@ -25,8 +25,8 @@ public class RateService {
     private final Map mapTarjetas = new HashMap<String,Float>();
 
     // internal files does not work within a docker container. Using these files for testing purposes...
-    private final String PATH_TIPOS = "src/test/resources/tipos.txt";
-    private final String PATH_TARJETAS = "/src/test/resources/tarjetas.txt";
+    private  static String PATH_TIPOS = "src/test/resources/tipos.txt";
+    private  static String PATH_TARJETAS = "src/test/resources/tarjetas.txt";
 
 
     public RateService() throws FileNotFoundException {
@@ -90,6 +90,7 @@ public class RateService {
     private final static List<Rates> processInputFile() throws FileNotFoundException {
 
         String inputFilePath= Application.getPathToTipos();
+        if (inputFilePath == null) inputFilePath = PATH_TIPOS;
         logger.info("Using inputFilePath: " + inputFilePath);
         List<Rates> inputList = new ArrayList<Rates>();
         try {
@@ -108,6 +109,8 @@ public class RateService {
 
     private final static List<Cards> processInputCardsFile() throws FileNotFoundException {
         String inputFilePath=Application.getPathToCards();
+        if (inputFilePath == null) inputFilePath = PATH_TARJETAS;
+
         logger.info("Using inputFilePath: " + inputFilePath);
         List<Cards> inputList = new ArrayList<Cards>();
         try {
