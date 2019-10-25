@@ -9,7 +9,7 @@
 
   Se levantará un servidor Tomcat embebido en el jar.
 
-  Abre localhost:8080 en una pestaña de tu navegador.
+  Abre 0.0.0.0:8080 en una pestaña de tu navegador.
 
   Actualmente está dada de alta la tarjeta COFIDIS con su TAE correspondiente. 
   Ver el fichero src/main/resources/tarjetas.txt por si quieres de alta alguna nueva.
@@ -43,7 +43,7 @@
 
   There will be a Tomcat server embedded in the jar.
 
-  Open localhost:8080 in a tab of your browser.
+  Open 0.0.0.0:8080 in a tab of your browser.
 
   The COFIDIS card is currently registered with its corresponding TAE. 
   See the src/main/resources/tarjetas.txt file if you want to register a new one.

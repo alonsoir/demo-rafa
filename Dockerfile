@@ -12,4 +12,4 @@ COPY ./runMe.sh /
 RUN chmod +x /runMe.sh
 ENTRYPOINT ["/runMe.sh"]
 # CMD ["java", "-Xmx128m", "-XX:+IdleTuningGcOnIdle", "-Xtune:virtualized", "-Xscmx128m", "-Xscmaxaot100m", "-Xshareclasses:cacheDir=/opt/shareclasses", "-jar", "/opt/app/app.jar", "/opt/app/tipos.txt", "/opt/app/tarjetas.txt"]
-EXPOSE 8080 8080
+# EXPOSE 8080 80
