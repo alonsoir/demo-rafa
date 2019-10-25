@@ -55,8 +55,7 @@ public class HelloController {
                            @RequestParam(name = "card", required = false, defaultValue = "Stranger") String card) {
 
         String initialMsg = "La tarjeta " + card + " con fecha " + year + " " + month;
-        //this is redundant
-        boolean value = false;
+        boolean value;
         String msg;
         try {
             value = service.isALoanSharkCard(year, month, card);

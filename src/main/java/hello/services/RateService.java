@@ -1,12 +1,12 @@
 package hello.services;
 
+import hello.Application;
 import hello.exceptions.NotExistException;
 import hello.pojos.Cards;
 import hello.pojos.Rates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,32 +18,34 @@ import java.util.stream.Collectors;
 @Service
 public class RateService {
 
-    Logger logger = LoggerFactory.getLogger(RateService.class);
+    private static final Logger logger = LoggerFactory.getLogger(RateService.class);
 
     private static final String COMMA = ",";
     private final Map mapInteresActivo = new HashMap<String,Float>();
     private final Map mapTarjetas = new HashMap<String,Float>();
-    private final String PATH_TIPOS = "src/main/resources/tipos.txt";
-    private final String PATH_TARJETAS = "src/main/resources/tarjetas.txt";
+
+    // internal files does not work within a docker container. Using these files for testing purposes...
+    private final String PATH_TIPOS = "src/test/resources/tipos.txt";
+    private final String PATH_TARJETAS = "/src/test/resources/tarjetas.txt";
 
 
     public RateService() throws FileNotFoundException {
 
         try {
-            List<Rates> list = processInputFile(PATH_TIPOS);
+            List<Rates> list = processInputFile();
             list.stream().forEach(e-> mapInteresActivo.put(e.getYear_month(),e.getRate()));
             logger.info("There are " + mapInteresActivo.values().size() + " elements on TAE map. " + list.size() + " elements on list. ");
             //System.out.println("Listing TAE file.");
             //mapInteresActivo.forEach((k,v)-> System.out.println(k.toString() + " " + v.toString()));
 
-            List<Cards> listCards = processInputCardsFile(PATH_TARJETAS);
+            List<Cards> listCards = processInputCardsFile();
             listCards.stream().forEach(e-> mapTarjetas.put(e.getCard_name(),e.getRate()));
             logger.info("There are " + mapTarjetas.values().size() + " elements on CARD map. " + listCards.size() + " elements on list. ");
             //System.out.println("Listing cards!");
             //mapTarjetas.forEach((k,v)-> System.out.println(k.toString() + " " + v.toString()));
             logger.info("Rate/TAE service Initialized!");
         }catch (FileNotFoundException e) {
-            //Nothing to do...
+            //Nothing to do... CRASH if files are not located.
             logger.info(e.getMessage());
         }
     }
@@ -85,11 +87,14 @@ public class RateService {
             throw new NotExistException(someMsg);
         }
     }
-    private final static List<Rates> processInputFile(String inputFilePath) throws FileNotFoundException {
+    private final static List<Rates> processInputFile() throws FileNotFoundException {
 
+        String inputFilePath= Application.getPathToTipos();
+        logger.info("Using inputFilePath: " + inputFilePath);
         List<Rates> inputList = new ArrayList<Rates>();
         try {
             File inputF = new File(inputFilePath);
+            //InputStream inputFS = RateService.class.getClassLoader().getResourceAsStream(inputFilePath);
             InputStream inputFS = new FileInputStream(inputF);
             BufferedReader br = new BufferedReader(new InputStreamReader(inputFS));
             // skip the header of the csv
@@ -101,12 +106,14 @@ public class RateService {
         return inputList;
     }
 
-    private final static List<Cards> processInputCardsFile(String inputFilePath) throws FileNotFoundException {
-
+    private final static List<Cards> processInputCardsFile() throws FileNotFoundException {
+        String inputFilePath=Application.getPathToCards();
+        logger.info("Using inputFilePath: " + inputFilePath);
         List<Cards> inputList = new ArrayList<Cards>();
         try {
             File inputF = new File(inputFilePath);
             InputStream inputFS = new FileInputStream(inputF);
+            //InputStream inputFS =RateService.class.getClassLoader().getResourceAsStream(inputFilePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(inputFS));
             // skip the header of the csv
             inputList = br.lines().skip(1).map(mapToCard).collect(Collectors.toList());

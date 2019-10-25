@@ -39,6 +39,8 @@ public class HelloControllerIT {
 
     @Before
     public void setUp() throws Exception {
+        Application.setPathToCards("/Users/aironman/gitProjects/demo-rafa/gs-spring-boot/complete/src/main/resources/tarjetas.txt");
+        Application.setPathToTipos("/Users/aironman/gitProjects/demo-rafa/gs-spring-boot/complete/src/main/resources/tipos.txt");
         this.base = new URL("http://localhost:" + port + "/");
     }
 

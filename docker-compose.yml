@@ -1,0 +1,11 @@
+version: '2.3'
+services:
+  app:
+    build: ""
+    mem_limit: 160m
+    ports:
+      - "8080"
+    volumes:
+      - shareclasses:/opt/shareclasses
+volumes:
+  shareclasses:
