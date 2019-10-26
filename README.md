@@ -30,7 +30,11 @@
     
     docker images
     
-    docker run IMAGE-ID
+    docker run -p 8080:8080 IMAGE-ID
+	
+    or
+
+    docker run -p 8080:8080 -t IMAGE-TAG		
 
 # demo-rafa
   A small web service to calculate if a card is usury or not.
