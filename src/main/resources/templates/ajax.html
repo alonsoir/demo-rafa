@@ -23,13 +23,42 @@
     <div class="starter-template">
         <h1>Victimas del crédito.</h1>
 
-
-
         <form class="form-horizontal" id="search-form">
             <div class="form-group form-group-lg">
                 <label class="col-sm-2 control-label">Tarjeta</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="tarjeta"/>
+                    <!-- <input type="text" class="form-control" id="tarjeta"/>
+                    # card_name,tae
+COFIDIS,24.51
+WIZINK,26.82
+YOU_ADVANZIA_BANK,26.82
+COINC,25.34
+EVO_FINANCE_CLASICA,21
+PASS_CARREFOUR,17.23
+ORO_BANKINTERCARD,26.82
+ORO_ING,22
+UNICA_BANKINTER,25.34
+DESPUES_BBVA,19.28
+SIN_SABADELL,47.60
+123_SANTANDER,24.57
+TU_ABANCA,14.42
+                    -->
+                    <select name="tarjeta" class="form-control">
+                        <option value="COFIDIS">COFIDIS</option>
+                        <option value="WIZINK" selected>WIZINK</option> <!-- Opción por defecto -->
+                        <option value="YOU_ADVANZIA_BANK">YOU_ADVANZIA_BANK</option>
+                        <option value="EVO_FINANCE_CLASICA">EVO_FINANCE_CLASICA</option>
+                        <option value="COINC">COINC</option>
+                        <option value="PASS_CARREFOUR">PASS_CARREFOUR</option>
+                        <option value="BANKINTERCARD">BANKINTERCARD</option>
+                        <option value="ORO_BANKINTERCARD">ORO_BANKINTERCARD</option>
+                        <option value="ORO_ING">ORO_ING</option>
+                        <option value="UNICA_BANKINTER">UNICA_BANKINTER</option>
+                        <option value="DESPUES_BBVA">DESPUES_BBVA</option>
+                        <option value="123_SANTANDER">123_SANTANDER</option>
+                        <option value="SIN_SABADELL">SIN_SABADELL</option>
+                        <option value="TU_ABANCA">TU_ABANCA</option>
+                    </select>
                 </div>
                 <label class="col-sm-2 control-label">Año</label>
                 <div class="col-sm-10">

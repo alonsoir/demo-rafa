@@ -14,7 +14,8 @@ $(document).ready(function () {
 function fire_ajax_submit() {
 
     var search = {}
-    search["tarjeta"] = $("#tarjeta").val();
+    search["tarjeta"] = $('select[name=tarjeta]').val()
+    // $("#tarjeta").val();
     search["año"] = $("#año").val();
     search["mes"] = $("#mes").val();
     //search["email"] = $("#email").val();
