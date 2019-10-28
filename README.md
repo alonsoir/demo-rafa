@@ -36,6 +36,10 @@
 
     docker run -p 8080:8080 -t IMAGE-TAG		
 
+He subido una imagen docker en hub.docker.com
+
+	docker pull aironman:demo-rafa:latest
+	
 # demo-rafa
   A small web service to calculate if a card is usury or not.
 
