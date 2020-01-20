@@ -1,6 +1,8 @@
-hay que coger los datos de la web https://clientebancario.bde.es/pcb/es/menu-horizontal/productosservici/relacionados/tiposinteres/guia-textual/tiposinteresprac/Tabla_de_tipos__a0b053c69a40f51.html
+hay que coger los datos de la web 
+    https://clientebancario.bde.es/pcb/es/menu-horizontal/productosservici/relacionados/tiposinteres/guia-textual/tiposinteresprac/Tabla_de_tipos__a0b053c69a40f51.html
 en concreto los valores del TAE para españa.
-
+    https://www.rankia.com/comparador/tarjetas?orden=destacados-desc&q=&tab%5B%5D=credito
+en concreto los datos de las tarjetas de crédito.
 un controller, OK
 refactorizar, OK
 un html, OK
