@@ -15,6 +15,10 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/*
+This class is crying out to get all that private functionality out into an abstract class to just show the public methods. 
+https://stackoverflow.com/questions/23882308/private-abstract-classes-in-java
+*/
 @Service
 public class RateService {
 
@@ -35,14 +39,10 @@ public class RateService {
             List<Rates> list = processInputFile();
             list.stream().forEach(e-> mapInteresActivo.put(e.getYear_month(),e.getRate()));
             logger.info("There are " + mapInteresActivo.values().size() + " elements on TAE map. " + list.size() + " elements on list. ");
-            //System.out.println("Listing TAE file.");
-            //mapInteresActivo.forEach((k,v)-> System.out.println(k.toString() + " " + v.toString()));
-
+            
             List<Cards> listCards = processInputCardsFile();
             listCards.stream().forEach(e-> mapTarjetas.put(e.getCard_name(),e.getRate()));
             logger.info("There are " + mapTarjetas.values().size() + " elements on CARD map. " + listCards.size() + " elements on list. ");
-            //System.out.println("Listing cards!");
-            //mapTarjetas.forEach((k,v)-> System.out.println(k.toString() + " " + v.toString()));
             logger.info("Rate/TAE service Initialized!");
         }catch (FileNotFoundException e) {
             //Nothing to do... CRASH if files are not located.
